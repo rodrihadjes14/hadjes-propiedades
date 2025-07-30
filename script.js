@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       propertyCards.forEach((card) => {
         const type = card.getAttribute("data-operation");
-        card.style.display = type === selected ? "block" : "none";
+        card.style.display = type === selected ? "grid" : "none";
       });
     });
   });
