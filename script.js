@@ -1,31 +1,29 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   const radioButtons = document.querySelectorAll('input[name="operation"]');
-  const propertyTypeSelect = document.querySelector('.property-type');
-  const searchInput = document.querySelector('.search-input');
-  const propertyCards = document.querySelectorAll(".property-card");
+  const typeSelect = document.querySelector('.property-type');
+  const input = document.querySelector('.search-input');
+  const button = document.querySelector('.search-button');
 
-  function filterCards() {
-    const selectedOperation = document.querySelector('input[name="operation"]:checked').value;
-    const selectedType = propertyTypeSelect.value.toLowerCase();
-    const searchText = searchInput.value.toLowerCase();
+  const routes = [
+    { op:'venta', type:'departamento', keyword:'palermo', page:'palermo.html' },
+    { op:'alquiler', type:'casa', keyword:'vicente lopez', page:'vicente-lopez.html' },
+    { op:'venta', type:'comercial', keyword:'mar del plata', page:'mar-del-plata.html' }
+  ];
 
-    propertyCards.forEach((card) => {
-      const type = card.getAttribute("data-type");
-      const op = card.getAttribute("data-operation");
-      const keywords = card.getAttribute("data-search");
+  function doSearch() {
+    const op = Array.from(radioButtons).find(r => r.checked).value;
+    const type = typeSelect.value;
+    const kw = input.value.toLowerCase().trim();
 
-      const matchesType = selectedType === "" || type === selectedType;
-      const matchesOp = op === selectedOperation;
-      const matchesSearch = keywords.includes(searchText);
-
-      card.style.display = matchesType && matchesOp && matchesSearch ? "grid" : "none";
-    });
+    const found = routes.find(r =>
+      r.op === op &&
+      (type === '' || r.type === type) &&
+      (kw === '' || r.keyword.includes(kw))
+    );
+    if (found) window.location.href = found.page;
+    else alert("No se encontraron propiedades que coincidan con tu búsqueda.");
   }
 
-  radioButtons.forEach((radio) => {
-    radio.addEventListener("change", filterCards);
-  });
-
-  propertyTypeSelect.addEventListener("change", filterCards);
-  searchInput.addEventListener("input", filterCards);
+  button.addEventListener('click', doSearch);
+  input.addEventListener('keyup', e => e.key === 'Enter' && doSearch());
 });
