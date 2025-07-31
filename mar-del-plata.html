@@ -9,6 +9,23 @@
 <body>
   <header class="site-header">
     <h1><a href="index.html">Hadjes Propiedades</a></h1>
+    <div class="filter-bar">
+  <div class="filter-options">
+    <label><input type="radio" name="operation" value="venta" checked> VENTA / BUY</label>
+    <label><input type="radio" name="operation" value="alquiler"> ALQUILER / RENT</label>
+    <label><input type="radio" name="operation" value="temporal"> ALQUILER TEMPORAL / TEMPORARY RENT</label>
+  </div>
+
+  <select class="property-type">
+    <option value="">Tipo / Type</option>
+    <option value="departamento">Departamento</option>
+    <option value="casa">Casa</option>
+    <option value="comercial">Comercial</option>
+  </select>
+
+  <input type="text" class="search-input" placeholder="Ubicación / Location, keyword..." />
+  <button class="search-button">🔍</button>
+</div>
   </header>
 
   <section class="property-detail">
