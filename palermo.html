@@ -6,47 +6,26 @@
   <meta name="description" content="Departamento moderno en Palermo, Buenos Aires.">
   <title>Palermo - Hadjes Propiedades</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    .property-detail {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 8px;
-    }
-
-    .property-detail img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
-
-    .property-detail h1 {
-      margin-top: 20px;
-    }
-
-    .property-detail p {
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
-
-    .back-button {
-      display: inline-block;
-      margin-top: 20px;
-      background: #005baa;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-
-    .back-button:hover {
-      background: #003f7d;
-    }
-  </style>
 </head>
 <body>
+  <div class="filter-bar">
+  <div class="filter-options">
+    <label><input type="radio" name="operation" value="venta" checked> VENTA / BUY</label>
+    <label><input type="radio" name="operation" value="alquiler"> ALQUILER / RENT</label>
+    <label><input type="radio" name="operation" value="temporal"> ALQUILER TEMPORAL / TEMPORARY RENT</label>
+  </div>
+
+  <select class="property-type">
+    <option value="">Tipo / Type</option>
+    <option value="departamento">Departamento</option>
+    <option value="casa">Casa</option>
+    <option value="comercial">Comercial</option>
+  </select>
+
+  <input type="text" class="search-input" placeholder="Ubicación / Location, keyword..." />
+  <button class="search-button">🔍</button>
+</div>
+
   <div class="property-detail">
     <img src="images/prop1.jpg" alt="Palermo property" />
     <h1>Departamento en Palermo</h1>
