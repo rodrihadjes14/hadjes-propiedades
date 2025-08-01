@@ -84,6 +84,35 @@
     <p>&copy; 2025 Hadjes Propiedades</p>
   </footer>
   
-<script src="script.js" defer></script>
+<script>
+  async function fetchListings() {
+    try {
+      const res = await fetch('https://hadjes-backend.onrender.com/listings');
+      const listings = await res.json();
+
+      const listingsDiv = document.getElementById('listings');
+      listingsDiv.innerHTML = ''; // Clear "Loading..." text
+
+      listings.forEach(listing => {
+        const div = document.createElement('div');
+        div.className = 'listing';
+        div.innerHTML = `
+          <h3>${listing.title}</h3>
+          <p>${listing.description}</p>
+          <p><strong>Price:</strong> $${listing.price}</p>
+          <p><strong>Location:</strong> ${listing.location}</p>
+          <img src="${listing.imageUrl}" alt="Listing image" width="300"/>
+        `;
+        listingsDiv.appendChild(div);
+      });
+    } catch (err) {
+      document.getElementById('listings').textContent = '❌ Failed to load listings';
+      console.error('Error fetching listings:', err);
+    }
+  }
+
+  fetchListings();
+</script>
+
 </body>
 </html>
